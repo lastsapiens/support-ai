@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ticketing Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="dashboard-header">
+      <h2>Support Ticket Dashboard</h2>
+      <div class="user-controls">
+        <p id="user-info"></p>
+        <button onclick="logout()" class="logout-button">Logout</button>
+      </div>
+    </header>
+
+    <section class="form-section">
+        <h3>Create New Ticket</h3>
+        <form id="ticket-form" class="ticket-form" enctype="multipart/form-data">
+          <input type="text" id="title" placeholder="Title" required /><br/><br/>
+        
+          <input type="text" id="wing" placeholder="Wing Name" required /><br/><br/>
+          <input type="text" id="section" placeholder="Section Name" required /><br/><br/>
+        
+          <textarea id="description" placeholder="Description" required></textarea><br/><br/>
+        
+          <label for="priority">Priority:</label>
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select><br/><br/>
+        
+          <input type="text" id="category" placeholder="Category (optional)" /><br/><br/>
+        
+          <label for="file">Attach file (image, PDF, doc):</label>
+          <input type="file" id="attachment" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" /><br/><br/>
+        
+          <button type="submit" class="submit-button">Create Ticket</button>
+        </form>        
+    </section>
+
+    <section class="tickets-section">
+      <h3>Your Tickets</h3>
+      <div id="tickets-list" class="tickets-list">Loading tickets...</div>
+    </section>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>

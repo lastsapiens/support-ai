@@ -1,0 +1,183 @@
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f8;
+    color: #333;
+  }
+  
+  /* Center the login container */
+  .login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  /* Page heading */
+  .login-container h2 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  /* Input fields styling */
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1.8px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .login-container input[type="text"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #2980b9;
+    outline: none;
+  }
+  
+  /* Login button styling */
+  .login-container button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-container button:hover {
+    background-color: #1f6391;
+  }
+  
+  /* Error message styling */
+  #error {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .user-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .logout-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Form */
+  .form-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+  
+  .ticket-form input,
+  .ticket-form textarea,
+  .ticket-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .ticket-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Tickets Section */
+  .tickets-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .tickets-list div {
+    background-color: #fff;
+    padding: 15px;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .tickets-list strong {
+    font-size: 1.1em;
+    color: #007bff;
+  }
+  
+  .tickets-list p {
+    margin: 5px 0;
+  }
+  
+  .tickets-list small {
+    color: #666;
+  }
+    
