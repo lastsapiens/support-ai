@@ -173,17 +173,18 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.addEventListener("click", function () {
               const ticketId = this.getAttribute("data-id");
               fetch(`http://127.0.0.1:8000/tickets/${ticketId}/assign`, {
-                method: "PUT",
+                method: "POST",  // ✅ Changed from PUT to POST
                 headers: {
                   "Authorization": `Bearer ${token}`
                 }
-              })
-                .then(res => res.json())
-                .then(() => {
-                  alert("Ticket assigned to you.");
-                  location.reload();
-                })
-                .catch(() => alert("Failed to assign ticket."));
+            })
+            .then(res => res.json())
+            .then(() => {
+              alert("Ticket assigned to you.");
+              location.reload();
+            })
+            .catch(() => alert("Failed to assign ticket."));
+            
             });
           });
         });

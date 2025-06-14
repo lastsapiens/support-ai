@@ -5,12 +5,15 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from app import schemas, models, auth
 from app.database import Base, engine
+from fastapi import Body
+from app.models import User, Ticket  # ✅ Add this line
 from app.auth import (
     get_db, get_current_user, create_access_token,
     get_password_hash, authenticate_user
 )
 from app.routers import tickets  # <-- Add this line if not already
 from app.routers.ticket_routes import ticket_router
+from app.routers.responder_routes import responder_router
 
 # Initialize DB
 Base.metadata.create_all(bind=engine)
@@ -65,3 +68,28 @@ def dashboard(current_user: schemas.UserOut = Depends(get_current_user)):
 # ✅ Register the ticket router
 app.include_router(tickets.router)        # <-- For regular ticket creation
 app.include_router(ticket_router, tags=["Tickets"])
+
+@app.post("/tickets/{ticket_id}/assign")  # ✅ Updated path
+def assign_ticket(ticket_id: int, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if current_user.role != "responder":
+        raise HTTPException(status_code=403, detail="Not authorized")
+    ticket = db.query(Ticket).filter(Ticket.id == ticket_id).first()
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Ticket not found")
+    ticket.assigned_to_id = current_user.id
+    db.commit()
+    return {"message": "Ticket assigned"}
+
+@app.post("/tickets/{ticket_id}/status")  # ✅ Updated path
+def update_ticket_status(ticket_id: int, status_data: dict = Body(...), current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if current_user.role != "responder":
+        raise HTTPException(status_code=403, detail="Not authorized")
+    ticket = db.query(Ticket).filter(Ticket.id == ticket_id).first()
+    if not ticket:
+        raise HTTPException(status_code=404, detail="Ticket not found")
+    ticket.status = status_data.get("status", ticket.status)
+    db.commit()
+    return {"message": "Status updated"}
+
+#include responder router
+app.include_router(responder_router, tags=["Responder"])

@@ -37,7 +37,7 @@ class Token(BaseModel):
     token_type: str
 class TokenData(BaseModel):
     sub: str  # or Optional[str] = None, if it can be missing
-    
+
 # --------- Ticket Schemas ---------
 
 class TicketBase(BaseModel):
@@ -69,6 +69,21 @@ class Ticket(BaseModel):
     created_at: datetime
     updated_at: datetime
     user_id: int
+
+    class Config:
+        orm_mode = True
+
+# --------- Ticket Update ---------
+class TicketUpdateCreate(BaseModel):
+    comment: str
+    status: str
+
+class TicketUpdateOut(BaseModel):
+    id: int
+    comment: str
+    created_at: datetime
+    responder_id: int
+    responder_name: str  # ✅ new field
 
     class Config:
         orm_mode = True

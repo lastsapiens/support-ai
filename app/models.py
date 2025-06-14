@@ -33,6 +33,8 @@ class Ticket(Base):
         back_populates="assigned_tickets",
         post_update=True
     )
+    # models.py
+    updates = relationship("TicketUpdate", back_populates="ticket", cascade="all, delete")
 
 class User(Base):
     __tablename__ = "users"
@@ -44,4 +46,15 @@ class User(Base):
     # Specify foreign_keys explicitly here:
     tickets = relationship("Ticket", foreign_keys=[Ticket.user_id], back_populates="user")
     assigned_tickets = relationship("Ticket", foreign_keys=[Ticket.assigned_to], back_populates="assigned_user")
+
+class TicketUpdate(Base):
+    __tablename__ = "ticket_updates"
+    id = Column(Integer, primary_key=True, index=True)
+    ticket_id = Column(Integer, ForeignKey("tickets.id"))
+    responder_id = Column(Integer, ForeignKey("users.id"))
+    comment = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    ticket = relationship("Ticket", back_populates="updates")
+    responder = relationship("User", backref="ticket_updates")
 
